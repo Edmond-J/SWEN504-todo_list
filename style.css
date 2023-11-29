@@ -1,34 +1,53 @@
 body {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 .main {
   display: grid;
-  grid-template-columns: 200px 5fr 100px;
+  min-width: 600px;
+  height: 100vh;
+  /* width: 800px; */
+  border: 1px solid cadetblue;
+  grid-template-columns: auto 1fr auto;
 }
 
-.main div {
-  border: cadetblue 1px solid;
+.main {
+  border: cadetblue 2px solid;
 }
-
+#back {
+  display: none;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+#user {
+  margin-top: 15px;
+  margin-left: 15px;
+}
 .navi {
-  width: 1fr;
+  width: 200px;
   background: antiquewhite;
-  display: flex;
   /*flex: 1fr;*/
   flex-direction: row;
 }
 
+#menu {
+  display: none;
+}
+
 .list {
-  width: 5fr;
   background: cadetblue;
-  display: flex;
   /*flex: 6fr;*/
   flex-direction: column;
   padding: 20px;
   /*row-gap: 10px;*/
 }
 
+.listItem:hover{
+background-color: antiquewhite;
+}
 .list div {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   height: 30px;
   color: darkslategrey;
   background: white;
@@ -42,16 +61,34 @@ body {
 
 .list div img {
   margin-right: 5px;
-  /*margin-top: 20px;*/
+  padding-top: 8px;
 }
 
-.list div img {
-  margin-right: 5px;
-  /*margin-top: 20px;*/
+.list #addNew input {
+  border: 0;
+  border-radius: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 12px;
+}
+
+#addNew img:nth-child(3){
+  display: none;
+}
+
+.task {
+  width: 300px;
+  background-color: darkgray;
+  display: none;
+  /* visibility: hidden; */
+  /* visibility: visible; */
 }
 
 @media screen and (max-width: 800px) {
-  .navi {
-    display: none;
+  .main {
+    grid-template-columns: 0 1fr auto;
+  }
+  #menu {
+    display: block;
   }
 }
