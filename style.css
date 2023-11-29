@@ -1,0 +1,57 @@
+body {
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 200px 5fr 100px;
+}
+
+.main div {
+  border: cadetblue 1px solid;
+}
+
+.navi {
+  width: 1fr;
+  background: antiquewhite;
+  display: flex;
+  /*flex: 1fr;*/
+  flex-direction: row;
+}
+
+.list {
+  width: 5fr;
+  background: cadetblue;
+  display: flex;
+  /*flex: 6fr;*/
+  flex-direction: column;
+  padding: 20px;
+  /*row-gap: 10px;*/
+}
+
+.list div {
+  height: 30px;
+  color: darkslategrey;
+  background: white;
+  font-size: 20px;
+  /*border: black 1px solid;*/
+  border-radius: 5px;
+  line-height: 30px;
+  padding: 10px;
+  margin: 3px;
+}
+
+.list div img {
+  margin-right: 5px;
+  /*margin-top: 20px;*/
+}
+
+.list div img {
+  margin-right: 5px;
+  /*margin-top: 20px;*/
+}
+
+@media screen and (max-width: 800px) {
+  .navi {
+    display: none;
+  }
+}
