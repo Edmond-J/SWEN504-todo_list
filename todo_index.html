@@ -8,6 +8,7 @@
   </head>
   <body>
     <div class="main">
+      <!-- navigation section -->
       <div class="navi">
         <img
           id="back"
@@ -22,38 +23,69 @@
             alt="user"
             width="30px"
           />
-          <label for="user">username</label>
+          <label id="userName">username</label>
         </div>
-        <p>all to-do list</p>
+        <hr />
+        <div class="naviTab">
+          <div id="allTodoTab">
+            <img src="./icon/task.png" width="30px" alt="task" />All To-do
+            <label>4</label>
+          </div>
+          <div id="importantTab">
+            <img src="./icon/star.png" width="30px" alt="star" />Important
+            <label>0</label>
+          </div>
+          <div id="CompletedTab">
+            <img src="./icon/checked.png" width="30px" alt="checked" />Completed
+            <label>0</label>
+          </div>
+          <div id="deletedTab">
+            <img src="./icon/bin.png" width="30px" alt="bin" />Deleted
+            <label>0</label>
+          </div>
+        </div>
       </div>
+      <!-- list section -->
       <div class="list">
         <img id="menu" src="./icon/bars-white.svg" alt="menu" width="20px" />
         <h2 style="color: aliceblue">To-do List</h2>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" /><span>todo 1</span>
+          <img src="./icon/circle-regular.svg" alt="check" />
+          <div>
+            If you are a security and compliance professional, we would love to
+            hear how you prioritize your work responsibilities.
+          </div>
           <img src="./icon/star-regular.svg" alt="star" />
         </div>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" /><span>todo 2</span>
+          <img src="./icon/circle-regular.svg" alt="check" />
+          <div>todo 2</div>
           <img src="./icon/star-regular.svg" alt="star" />
         </div>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" /><span>todo 3</span>
+          <img src="./icon/circle-regular.svg" alt="check" />
+          <div>todo 3</div>
           <img src="./icon/star-regular.svg" alt="star" />
         </div>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" /><span>todo 4</span>
+          <img src="./icon/circle-regular.svg" alt="check" />
+          <div>todo 4</div>
           <img src="./icon/star-regular.svg" alt="star" />
         </div>
-
         <div id="addNew">
           <img src="./icon/plus-solid.svg" alt="add" />
           <input id="newToDo" type="text" placeholder="add new to-do" />
           <img src="./icon/check-solid.svg" alt="ok" />
         </div>
       </div>
-
-      <div class="task">
+      <!-- detail section -->
+      <div class="detail">
+        <img src="" alt="">
+        <div class="listItem" >
+          <img src="./icon/circle-regular.svg" alt="check" />
+          <div>todo 2</div>
+          <img src="./icon/star-regular.svg" alt="star" />
+        </div>
         <p>Task</p>
       </div>
     </div>

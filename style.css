@@ -14,19 +14,50 @@ body {
 .main {
   border: cadetblue 2px solid;
 }
+.navi {
+  padding: 15px;
+}
+.naviTab > div {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  margin-top: 15px;
+  margin-left: -10;
+  padding: 10px;
+  font-size: 20px;
+  color: rgb(80, 80, 80);
+  /* text-justify: center; */
+  align-items: center;
+  border-radius: 5px;
+}
+.naviTab > div:hover {
+  background-color: lightgray;
+}
+.naviTab > div img {
+  margin-right: 10px;
+}
+hr{
+  border: none;
+  background-color: cadetblue;
+  height: 2px;
+}
 #back {
   display: none;
   margin-top: 15px;
-  margin-left: 15px;
 }
+
 #user {
   margin-top: 15px;
-  margin-left: 15px;
+  margin-right: 5px;
 }
+
+#userName {
+  font-size: 20px;
+  color: rgb(80, 80, 80);
+}
+
 .navi {
   width: 200px;
   background: antiquewhite;
-  /*flex: 1fr;*/
   flex-direction: row;
 }
 
@@ -36,52 +67,70 @@ body {
 
 .list {
   background: cadetblue;
-  /*flex: 6fr;*/
   flex-direction: column;
   padding: 20px;
-  /*row-gap: 10px;*/
 }
 
-.listItem:hover{
-background-color: antiquewhite;
+.listItem:hover {
+  background-color: antiquewhite;
 }
-.list div {
+
+.list > div, .listItem {
   display: grid;
   grid-template-columns: auto 1fr auto;
-  height: 30px;
-  color: darkslategrey;
+  height: 50px;
+  align-items: center;
   background: white;
   font-size: 20px;
-  /*border: black 1px solid;*/
   border-radius: 5px;
-  line-height: 30px;
-  padding: 10px;
-  margin: 3px;
+  margin: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /* border: 3px solid rebeccapurple; */
 }
 
-.list div img {
-  margin-right: 5px;
-  padding-top: 8px;
+/* To-do items' title */
+.listItem div {
+  color: darkslategrey;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  margin-left: 15px;
 }
+
+/* .list div img {
+  margin-right: 15px;
+  margin-left: 15px;
+} */
 
 .list #addNew input {
+  font-size: large;
   border: 0;
+  height: 30px;
   border-radius: 20px;
-  margin-left: 10px;
   margin-right: 10px;
   padding-left: 12px;
 }
+/* add new To-do input buttons background */
+#addNew img:hover {
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: antiquewhite;
+  border-radius: 50%;
+}
 
-#addNew img:nth-child(3){
+#addNew img:nth-child(3) {
   display: none;
 }
 
-.task {
-  width: 300px;
+/* detail section */
+.detail {
+  display: flexbox;
+  flex-direction: column;
+  width: 350px;
   background-color: darkgray;
-  display: none;
-  /* visibility: hidden; */
-  /* visibility: visible; */
+  /* display: none; */
 }
 
 @media screen and (max-width: 800px) {
