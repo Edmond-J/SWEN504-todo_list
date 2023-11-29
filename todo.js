@@ -34,12 +34,6 @@ listItems.forEach((div) => {
       console.log(div.textContent); //action on clicking each list item
     }
   });
-  // div.addEventListener("mouseover", () => {
-  //   div.style.backgroundColor = "antiquewhite";
-  // });
-  // div.addEventListener("mouseout", () => {
-  //   div.style.backgroundColor = "white";
-  // });
 });
 
 newToDo.addEventListener("input", () => {
