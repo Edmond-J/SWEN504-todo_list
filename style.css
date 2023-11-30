@@ -87,9 +87,10 @@ hr {
   background: white;
   font-size: 20px;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding-left: 15px;
   padding-right: 15px;
+  box-shadow: 2px 4px 8px rgba(40, 40, 40, 0.4);
   /* border: 3px solid rebeccapurple; */
 }
 
@@ -140,9 +141,10 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 350px;
+  width: 300px;
   color: rgb(80, 80, 80);
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
+  background-color: white;
   padding: 15px;
   /* transition: transform 1s ease; */
   /* text-align: right; */
@@ -155,6 +157,7 @@ hr {
 }
 
 .detail .listItem {
+  border: 1px solid cadetblue;
   min-height: 50px;
   height: fit-content;
   align-items: baseline;
@@ -162,25 +165,40 @@ hr {
 
 #controlOption {
   align-items: center;
+  font-size: medium;
+  /* grid-template-columns: auto auto; */
+  color: rgb(80, 80, 80);
 }
 
 #datepicker {
   border: none;
-  color: darkslategrey;
+  font-size: medium;
+  /* color: darkslategrey; */
+  color: rgb(80, 80, 80);
 }
 
 .detail textarea {
   width: 100%;
   height: 150px;
+  overflow-y: auto;
+  max-height: 800px;
   font-size: 18px;
   border-radius: 5px;
   border: none;
   padding: 10px;
   resize: none;
 }
+.detail>textarea{
+  box-shadow: 2px 4px 8px rgba(40, 40, 40, 0.4);
+}
+
+.detail>textarea{
+  border: 1px solid cadetblue;
+  margin-bottom: 10px;
+}
 
 .detail .listItem textarea {
-  height: 100px;
+  /* height: 100px; */
 }
 
 input:focus,
