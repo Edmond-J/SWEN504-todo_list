@@ -10,20 +10,10 @@
     <div class="main">
       <!-- navigation section -->
       <div class="navi">
-        <img
-          id="back"
-          src="./icon/arrow-left-solid.svg"
-          alt="back"
-          width="20px"
-        />
+        <img id="back" src="./icon/arrow-left.svg" alt="back" width="20px" />
         <div>
-          <img
-            id="user"
-            src="./icon/user-regular.svg"
-            alt="user"
-            width="30px"
-          />
-          <label id="userName">username</label>
+          <img id="userAvatar" src="./icon/user.svg" alt="user" width="30px" />
+          <label id="userName">account</label>
         </div>
         <hr />
         <div class="naviTab">
@@ -50,43 +40,63 @@
         <img id="menu" src="./icon/bars-white.svg" alt="menu" width="20px" />
         <h2 style="color: aliceblue">To-do List</h2>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" />
-          <div>
-            If you are a security and compliance professional, we would love to
-            hear how you prioritize your work responsibilities.
-          </div>
-          <img src="./icon/star-regular.svg" alt="star" />
+          <img src="./icon/circle.svg" alt="check" />
+          <div>get the vagetable.</div>
+          <img src="./icon/star.svg" alt="star" />
         </div>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" />
-          <div>todo 2</div>
-          <img src="./icon/star-regular.svg" alt="star" />
+          <img src="./icon/circle.svg" alt="check" />
+          <div>When writing code for the Web, there are a large number of Web APIs available. Below is a list of all the APIs and interfaces (object types) that you may be able to use while developing your Web app or site.</div>
+          <img src="./icon/star.svg" alt="star" />
         </div>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" />
+          <img src="./icon/circle.svg" alt="check" />
           <div>todo 3</div>
-          <img src="./icon/star-regular.svg" alt="star" />
+          <img src="./icon/star.svg" alt="star" />
         </div>
         <div class="listItem">
-          <img src="./icon/circle-regular.svg" alt="check" />
+          <img src="./icon/circle.svg" alt="check" />
           <div>todo 4</div>
-          <img src="./icon/star-regular.svg" alt="star" />
+          <img src="./icon/star.svg" alt="star" />
         </div>
         <div id="addNew">
-          <img src="./icon/plus-solid.svg" alt="add" />
+          <img src="./icon/plus.svg" alt="add" />
           <input id="newToDo" type="text" placeholder="add new to-do" />
-          <img src="./icon/check-solid.svg" alt="ok" />
+          <img src="./icon/check.svg" alt="ok" />
         </div>
       </div>
       <!-- detail section -->
       <div class="detail">
-        <img src="" alt="">
-        <div class="listItem" >
-          <img src="./icon/circle-regular.svg" alt="check" />
-          <div>todo 2</div>
-          <img src="./icon/star-regular.svg" alt="star" />
+        <img id="closeDetail" src="./icon/xmark.svg" width="20px" alt="close" />
+        <div class="listItem">
+          <img src="./icon/circle.svg" alt="check" />
+          <textarea
+            name="todoContent"
+            id="todoContentInput"
+            cols="10"
+            rows="2"
+            placeholder="details"
+          ></textarea>
+          <img src="./icon/star.svg" alt="star" />
         </div>
-        <p>Task</p>
+        <div id="controlOption" class="listItem">
+          <img id="dueDateImg" src="./icon/calendar.svg" alt="due date" />
+          <div>Due Date</div>
+          <input type="date" id="datepicker" >
+        </div>
+        <!-- <div id="comment"> -->
+        <textarea
+          name="comment"
+          id="commentInput"
+          cols="30"
+          rows="10"
+          placeholder="add comment"
+        ></textarea>
+        <!-- </div> -->
+        <div class="detailFooter">
+          <label id="createdDate">created on: Today</label>
+          <img id="deleteATodo" src="./icon/trash.svg" alt="trash" />
+        </div>
       </div>
     </div>
     <script src="todo.js"></script>
