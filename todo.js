@@ -7,8 +7,7 @@ let backButton = document.getElementById("back");
 let closeDetailButton = document.getElementById("closeDetail");
 let deleteButton = document.getElementById("deleteATodo");
 let newToDoInput = document.getElementById("newToDo");
-// let detailCheck = document.getElementById("detailCheck");
-let $detailCheck = $("#detailCheck");
+let detailCheck = document.getElementById("detailCheck");
 let detailStar = document.getElementById("detailStar");
 let todoContentInput = document.getElementById("todoContentInput");
 let dueDateButton = document.getElementById("dueDateImg");
@@ -24,9 +23,9 @@ listItems.forEach((div) => {
     div.style = "background-color: antiquewhite;";
     // let computedStyle = window.getComputedStyle(detailArea);
     if (currentDetailID != content.dataset.itemId) {
-      showDetail(content.dataset.itemId);
-      detailArea.style.display = "flex";
       currentDetailID = content.dataset.itemId;
+      showDetail();
+      detailArea.style.display = "flex";
     }
   });
 
@@ -39,7 +38,7 @@ listItems.forEach((div) => {
       content.style = " text-decoration: line-through; color: gray;";
       content.dataset.completed = 1;
       if (content.dataset.itemId == currentDetailID) {
-        $detailCheck.src = "./icon/circle-check-blue.svg";
+        detailCheck.src = "./icon/circle-check-blue.svg";
         todoContentInput.style = " text-decoration: line-through; color: gray;";
       }
     } else {
@@ -47,7 +46,7 @@ listItems.forEach((div) => {
       content.style = " text-decoration: ; color: darkslategrey;";
       content.dataset.completed = 0;
       if (content.dataset.itemId == currentDetailID) {
-        $detailCheck.src = "./icon/circle.svg";
+        detailCheck.src = "./icon/circle.svg";
         todoContentInput.style = " text-decoration: ; color: darkslategrey;";
       }
     }
@@ -74,6 +73,7 @@ listItems.forEach((div) => {
 
 closeDetailButton.addEventListener("click", () => {
   detailArea.style.display = "none";
+  currentDetailID = 0;
 });
 
 newToDoInput.addEventListener("input", () => {
@@ -99,7 +99,7 @@ newToDoInput.addEventListener("input", () => {
 
 menuButton.addEventListener("click", () => {
   mainFrame.style = "grid-template-columns: auto 1fr auto;";
-  detailArea.style.display = "none";
+  // detailArea.style.display = "none";
   backButton.style.display = "block";
   menuButton.style.display = "none";
   // naviArea.style = "position: absolute; z-index: 999;";
@@ -125,48 +125,70 @@ function checkButtonHover(checkButton) {
   });
 }
 
-function checkButtonClick(checkButton, textHolder) {}
+detailCheck.addEventListener("click", function () {
+  listItems.forEach((div) => {
+    let content = div.querySelector("div");
+    if (content.dataset.itemId == currentDetailID) {
+      if (!detailCheck.src.endsWith("circle-check-blue.svg")) {
+        content.parentNode.querySelector("img").src =
+          "./icon/circle-check-blue.svg";
+        content.style = " text-decoration: line-through; color: gray;";
+        content.dataset.completed = 1;
+        detailCheck.src = "./icon/circle-check-blue.svg";
+        todoContentInput.style = " text-decoration: line-through; color: gray;";
+      } else {
+        content.parentNode.querySelector("img").src = "./icon/circle.svg";
+        content.style = " text-decoration: ; color: darkslategrey;";
+        content.dataset.completed = 0;
+        detailCheck.src = "./icon/circle.svg";
+        todoContentInput.style = " text-decoration: ; color: darkslategrey;";
+      }
+    }
+    // return;
+  });
+});
 
-function showDetail(todoID) {
+detailStar.addEventListener("click", function () {
+  listItems.forEach((div) => {
+    let content = div.querySelector("div");
+    if (content.dataset.itemId == currentDetailID) {
+      if (!detailStar.src.endsWith("star-solid.svg")) {
+        content.parentNode.querySelector("img:nth-of-type(2)").src =
+          "./icon/star-solid.svg";
+        content.dataset.important = 1;
+        detailStar.src = "./icon/star-solid.svg";
+      } else {
+        content.parentNode.querySelector("img:nth-of-type(2)").src =
+          "./icon/star.svg";
+        content.dataset.important = 0;
+        detailStar.src = "./icon/star.svg";
+      }
+    }
+    // return;
+  });
+});
+
+function showDetail() {
   let dueDateDisplay = document.getElementById("datepicker");
-  // let createdDate = document.getElementById("createdDate");
   let createdDate = document.getElementById("createdDate");
   listItems.forEach((div) => {
     let content = div.querySelector("div");
-    if (content.dataset.itemId == todoID) {
+    if (content.dataset.itemId == currentDetailID) {
       todoContentInput.value = content.textContent;
       dueDateDisplay.value = content.dataset.dueDate;
       createdDate.textContent = "created on: " + content.dataset.createDate;
       if (content.dataset.important == 0) detailStar.src = "./icon/star.svg";
       else detailStar.src = "./icon/star-solid.svg";
       if (content.dataset.completed == 0) {
-        $detailCheck.attr("src", "./icon/circle.svg");
+        detailCheck.src = "./icon/circle.svg";
         todoContentInput.style = " text-decoration: ; color: darkslategrey;";
       } else {
-        $detailCheck.attr("src", "./icon/circle-check-blue.svg");
+        detailCheck.src = "./icon/circle-check-blue.svg";
         todoContentInput.style = " text-decoration: line-through; color: gray;";
       }
-      // checkButtonHover($detailCheck);
-      $detailCheck.off();
-      $detailCheck.on("click", function () {
-        if (!$detailCheck.attr("src").endsWith("circle-check-blue.svg")) {
-          content.parentNode.querySelector("img").src =
-            "./icon/circle-check-blue.svg";
-          content.style = " text-decoration: line-through; color: gray;";
-          content.dataset.completed = 1;
-          // $detailCheck.src = "./icon/circle-check-blue.svg";
-          $detailCheck.attr("src", "./icon/circle-check-blue.svg");
-          todoContentInput.style =
-            " text-decoration: line-through; color: gray;";
-        } else {
-          content.parentNode.querySelector("img").src = "./icon/circle.svg";
-          content.style = " text-decoration: ; color: darkslategrey;";
-          content.dataset.completed = 0;
-          // $detailCheck.src = "./icon/circle.svg";
-          $detailCheck.attr("src", "./icon/circle.svg");
-          todoContentInput.style = " text-decoration: ; color: darkslategrey;";
-        }
-      });
+      checkButtonHover(detailCheck);
+      // detailCheck.off();
+
       // console.log(content.dataset.createDate)
       return;
     }

@@ -3,14 +3,14 @@ require 'database_con.php';
 ?>
 <html lang="en">
 <link rel="stylesheet" href="style.css" />
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Edmond's To-Do List</title>
-  <script src="jquery-3.6.0.js"></script>
-</head>
 
+  <title>Edmond's To-Do List</title>
+  <!-- <script src="jquery-3.6.0.js"></script> -->
+</head>
 <body>
   <div class="main">
     <!-- navigation section -->
@@ -24,19 +24,47 @@ require 'database_con.php';
       <div class="naviTab">
         <div id="allTodoTab">
           <img src="./icon/task.png" width="30px" alt="task" />All To-do
-          <label>4</label>
+          <?php
+          $result = $connect->query("SELECT COUNT(*) AS all_count FROM todo_items WHERE deleted != 1");
+          if ($result) {
+            $row = $result->fetch_assoc();
+            $count = $row['all_count'];
+          }
+          echo '<label>' . $count . '</label>';
+          ?>
         </div>
         <div id="importantTab">
           <img src="./icon/star.png" width="30px" alt="star" />Important
-          <label>0</label>
+          <?php
+          $result = $connect->query("SELECT COUNT(*) AS important_count FROM todo_items WHERE important = 1");
+          if ($result) {
+            $row = $result->fetch_assoc();
+            $count = $row['important_count'];
+          }
+          echo '<label>' . $count . '</label>';
+          ?>
         </div>
         <div id="CompletedTab">
           <img src="./icon/checked.png" width="30px" alt="checked" />Completed
-          <label>0</label>
+          <?php
+          $result = $connect->query("SELECT COUNT(*) AS completed_count FROM todo_items WHERE completed = 1");
+          if ($result) {
+            $row = $result->fetch_assoc();
+            $count = $row['completed_count'];
+          }
+          echo '<label>' . $count . '</label>';
+          ?>
         </div>
         <div id="deletedTab">
           <img src="./icon/bin.png" width="30px" alt="bin" />Deleted
-          <label>0</label>
+          <?php
+          $result = $connect->query("SELECT COUNT(*) AS deleted_count FROM todo_items WHERE deleted = 1");
+          if ($result) {
+            $row = $result->fetch_assoc();
+            $count = $row['deleted_count'];
+          }
+          echo '<label>' . $count . '</label>';
+          ?>
         </div>
       </div>
     </div>
@@ -47,32 +75,30 @@ require 'database_con.php';
       <?php
       $todos = $connect->query("SELECT*FROM todo_items ORDER BY id DESC");
       ?>
-      <?php if ($todos->rowCount() === 0) { ?>
+      <?php if ($todos->num_rows === 0) { ?>
         <!-- # code if database is empty... -->
-      <?php } ?>
-
-      <?php while ($todo = $todos->fetch(PDO::FETCH_ASSOC)) { ?>
-
-        <div class="listItem">
-          <!-- <img src="./icon/circle.svg" alt="check" /> -->
-          <?php if ($todo['completed'] == 0) {
+      <?php }
+      while ($todo = $todos->fetch_assoc()) {
+        if ($todo['deleted'] == 0) {
+          echo '<div class="listItem">';
+          if ($todo['completed'] == 0) {
             echo '<img src="./icon/circle.svg" alt="check" />';
           } else {
             echo '<img src="./icon/circle-check-blue.svg" alt="check" />';
-          } ?>
-          <?php echo '<div data-item-id="' . $todo['id'] . '" data-completed="' . $todo['completed'] . '" data-important="' . $todo['important'] . '" data-deleted="' . $todo['deleted'] . '" data-due-date="' . $todo['due_date'] . '" data-create-date="' . $todo['create_date'] . '" data-comment="' . $todo['comment'].'"';
-          if($todo['completed'] == 1){
+          }
+          echo '<div data-item-id="' . $todo['id'] . '" data-completed="' . $todo['completed'] . '" data-important="' . $todo['important'] . '" data-deleted="' . $todo['deleted'] . '" data-due-date="' . $todo['due_date'] . '" data-create-date="' . $todo['create_date'] . '" data-comment="' . $todo['comment'] . '"';
+          if ($todo['completed'] == 1) {
             echo ' style = " text-decoration: line-through; color: gray;"';
           }
-          echo '>' . $todo['content'] . ' </div>'; ?>
-          <?php if ($todo['important'] == 0) {
+          echo '>' . $todo['content'] . ' </div>';
+          if ($todo['important'] == 0) {
             echo '<img src="./icon/star.svg" alt="important" />';
           } else {
             echo '<img src="./icon/star-solid.svg" alt="important" />';
-          } ?>
-        </div>
-      <?php } ?>
-
+          }
+          echo '</div>';
+        }
+      } ?>
       <div id="addNew">
         <img src="./icon/plus.svg" alt="add" />
         <input id="newToDo" type="text" placeholder="add new to-do" />
