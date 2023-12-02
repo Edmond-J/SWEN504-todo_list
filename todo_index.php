@@ -18,12 +18,12 @@ global $connect;
   <div class="navi">
     <img id="back" src="./icon/arrow-left.svg" alt="back" width="20px"/>
     <div>
-      <img id="userAvatar" src="./icon/user.svg" alt="user" width="30px"/>
-      <label id="userName">account</label>
+      <img id="userAvatar" src="./icon/rabbit.png" alt="user" width="48"/>
+      <label id="userName">Account Name</label>
     </div>
     <hr/>
     <div class="naviTab">
-      <div  onclick="switchToAll()">
+      <div onclick="switchToAll()">
         <img src="./icon/task.png" width="30px" alt="task"/>All To-do
           <?php
           $result = $connect->query("SELECT COUNT(*) AS all_count FROM todo_items WHERE deleted != 1");
@@ -103,11 +103,12 @@ global $connect;
           echo '</div>';
 
       } ?>
-    <div id="addNew">
-      <img class="iconButton" src="./icon/plus.svg" alt="add"/>
-      <input id="newToDo" type="text" placeholder="add new to-do"/>
-      <img class="iconButton" src="./icon/check.svg" alt="ok"/>
-    </div>
+    <form id="addNew" action="database_operate.php" method="post">
+      <img class="iconButton" src="./icon/plus.svg" width="16px" alt="add"/>
+      <input id="newToDo" name="content" value="add" type="text" placeholder="add new to-do"/>
+      <input type="submit" id="hiddenSubmitTitle" style="display: none;">
+      <img class="iconButton" id="submit" src="./icon/check.svg" width="16px" alt="ok"/>
+    </form>
   </div>
   <!-- detail section -->
   <div class="detail">
@@ -118,15 +119,22 @@ global $connect;
       <img id="detailStar" src="./icon/star.svg" alt="star"/>
     </div>
     <div id="controlOption" class="listItem">
-      <img class="iconButton" id="clearDueDateButton" src="./icon/calendar.svg" alt="due date"/>
+      <img class="iconButton" id="clearDueDateButton" src="./icon/calendar.svg" title="reset due date" alt="due date"/>
       <div>Due Date:</div>
       <input type="date" id="datepicker">
     </div>
     <textarea name="comment" id="commentInput" cols="30" rows="10" placeholder="add comment"></textarea>
+
     <!-- </div> -->
     <div class="detailFooter">
+
+      <img class="iconButton" id="deleteUndo" src="./icon/undo.png" width="16px" title="undo" alt="trash"/>
       <label id="createdDate">created on: </label>
-      <img class="iconButton" id="deleteATodo" src="./icon/trash.svg" alt="trash"/>
+      <form action="database_operate.php" method="post">
+        <input type="hidden" id="deleteItem" name="delete" value="id" style="display: none;">
+        <input type="submit" id="hiddenSubmitDelete" style="display: none;">
+        <img class="iconButton" id="deleteATodo" src="./icon/trash.svg" title="delete" alt="trash"/>
+      </form>
     </div>
   </div>
 </div>
