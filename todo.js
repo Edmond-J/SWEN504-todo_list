@@ -5,82 +5,57 @@ let detailArea = document.querySelector(".detail");
 let menuButton = document.getElementById("menu");
 let backButton = document.getElementById("back");
 let closeDetailButton = document.getElementById("closeDetail");
-let deleteButton = document.getElementById("deleteATodo");
 let newToDoInput = document.getElementById("newToDo");
 let detailCheck = document.getElementById("detailCheck");
 let detailStar = document.getElementById("detailStar");
 let todoContentInput = document.getElementById("todoContentInput");
-let dueDateButton = document.getElementById("dueDateImg");
+let allTodoCount = document.getElementById("allTodoCount");
+// let importantTab = document.getElementById("importantTab");
+let importantCount = document.getElementById("importantCount");
+// let completedTab = document.getElementById("CompletedTab");
+let completedCount = document.getElementById("completedCount");
+let deletedCount = document.getElementById(("deletedCount"));
+let clearDueDateButton = document.getElementById("clearDueDateButton");
+let deleteButton = document.getElementById("deleteATodo");
+let tabTitle = document.getElementById("tabTitle");
 let currentDetailID;
-
+let currentItem;
 listItems.forEach((div) => {
   //click a to-do item will show the details
   let content = div.querySelector("div");
   div.addEventListener("click", () => {
     listItems.forEach((otherDiv) => {
-      otherDiv.style = "background-color: white;";
+      // otherDiv.style = "background-color: white;";
     });
-    div.style = "background-color: antiquewhite;";
-    // let computedStyle = window.getComputedStyle(detailArea);
-    if (currentDetailID != content.dataset.itemId) {
+    // div.style = "background-color: antiquewhite;";
+    if (currentDetailID !== content.dataset.itemId) {
       currentDetailID = content.dataset.itemId;
+      currentItem = div;
       showDetail();
       detailArea.style.display = "flex";
     }
   });
-
-  // check button action
+  /*   check button action */
   let imgCheck = div.querySelector("img");
   checkButtonHover(imgCheck);
   imgCheck.addEventListener("click", function () {
-    if (!imgCheck.src.endsWith("circle-check-blue.svg")) {
-      imgCheck.src = "./icon/circle-check-blue.svg";
-      content.style = " text-decoration: line-through; color: gray;";
-      content.dataset.completed = 1;
-      if (content.dataset.itemId == currentDetailID) {
-        detailCheck.src = "./icon/circle-check-blue.svg";
-        todoContentInput.style = " text-decoration: line-through; color: gray;";
-      }
-    } else {
-      imgCheck.src = "./icon/circle.svg";
-      content.style = " text-decoration: ; color: darkslategrey;";
-      content.dataset.completed = 0;
-      if (content.dataset.itemId == currentDetailID) {
-        detailCheck.src = "./icon/circle.svg";
-        todoContentInput.style = " text-decoration: ; color: darkslategrey;";
-      }
-    }
+    switchCheckIcon(imgCheck, content);
   });
-
   /* star button action */
   let imgStar = div.querySelectorAll("img")[1];
   imgStar.addEventListener("click", () => {
-    // console.log(imgStar.src);
-    if (imgStar.src.endsWith("star.svg")) {
-      imgStar.src = "./icon/star-solid.svg";
-      content.dataset.important = 1;
-      if (content.dataset.itemId == currentDetailID)
-        detailStar.src = "./icon/star-solid.svg";
-    } else {
-      imgStar.src = "./icon/star.svg";
-      content.dataset.important = 0;
-      if (content.dataset.itemId == currentDetailID)
-        detailStar.src = "./icon/star.svg";
-    }
+    switchStarIcon(imgStar, content);
   });
 });
 /* 清单条目管理 */
-
 closeDetailButton.addEventListener("click", () => {
   detailArea.style.display = "none";
   currentDetailID = 0;
 });
-
 newToDoInput.addEventListener("input", () => {
   const inputValue = event.target.value;
   let imgs = document.querySelectorAll("#addNew img");
   if (inputValue.trim().length > 0) {
-    // document.getElementById("addNew").firstChild;
     imgs[0].style.transform = "rotate(45deg)";
     imgs[1].style.display = "block";
     imgs[0].addEventListener("click", () => {
@@ -96,20 +71,16 @@ newToDoInput.addEventListener("input", () => {
     //这里添加增加一个新list的操作
   });
 });
-
 menuButton.addEventListener("click", () => {
   mainFrame.style = "grid-template-columns: auto 1fr auto;";
   // detailArea.style.display = "none";
   backButton.style.display = "block";
   menuButton.style.display = "none";
-  // naviArea.style = "position: absolute; z-index: 999;";
 });
-
 backButton.addEventListener("click", () => {
   mainFrame.style = "grid-template-columns: 0 1fr auto;";
   backButton.style.display = "none";
   menuButton.style.display = "block";
-  // naviArea.style = "position: static; z-index: 0;";
 });
 
 function checkButtonHover(checkButton) {
@@ -125,47 +96,30 @@ function checkButtonHover(checkButton) {
   });
 }
 
-detailCheck.addEventListener("click", function () {
+detailCheck.addEventListener("click", () => {
   listItems.forEach((div) => {
     let content = div.querySelector("div");
-    if (content.dataset.itemId == currentDetailID) {
-      if (!detailCheck.src.endsWith("circle-check-blue.svg")) {
-        content.parentNode.querySelector("img").src =
-          "./icon/circle-check-blue.svg";
-        content.style = " text-decoration: line-through; color: gray;";
-        content.dataset.completed = 1;
-        detailCheck.src = "./icon/circle-check-blue.svg";
-        todoContentInput.style = " text-decoration: line-through; color: gray;";
-      } else {
-        content.parentNode.querySelector("img").src = "./icon/circle.svg";
-        content.style = " text-decoration: ; color: darkslategrey;";
-        content.dataset.completed = 0;
-        detailCheck.src = "./icon/circle.svg";
-        todoContentInput.style = " text-decoration: ; color: darkslategrey;";
-      }
+    if (content.dataset.itemId === currentDetailID) {
+      switchCheckIcon(content.parentNode.querySelector("img"), content);
     }
     // return;
   });
 });
-
-detailStar.addEventListener("click", function () {
+detailStar.addEventListener("click", () => {
   listItems.forEach((div) => {
     let content = div.querySelector("div");
-    if (content.dataset.itemId == currentDetailID) {
-      if (!detailStar.src.endsWith("star-solid.svg")) {
-        content.parentNode.querySelector("img:nth-of-type(2)").src =
-          "./icon/star-solid.svg";
-        content.dataset.important = 1;
-        detailStar.src = "./icon/star-solid.svg";
-      } else {
-        content.parentNode.querySelector("img:nth-of-type(2)").src =
-          "./icon/star.svg";
-        content.dataset.important = 0;
-        detailStar.src = "./icon/star.svg";
-      }
+    if (content.dataset.itemId === currentDetailID) {
+      switchStarIcon(content.parentNode.querySelector("img:nth-of-type(2)"), content);
     }
-    // return;
   });
+});
+clearDueDateButton.addEventListener("click", () => {
+  clearDueDateButton.parentNode.querySelector("input").value = "";
+});
+deleteButton.addEventListener("click", () => {
+  currentItem.querySelector('div').dataset.deleted = "1";
+  currentItem.style.display = "none";
+  updateTabCount();
 });
 
 function showDetail() {
@@ -173,13 +127,13 @@ function showDetail() {
   let createdDate = document.getElementById("createdDate");
   listItems.forEach((div) => {
     let content = div.querySelector("div");
-    if (content.dataset.itemId == currentDetailID) {
+    if (content.dataset.itemId === currentDetailID) {
       todoContentInput.value = content.textContent;
       dueDateDisplay.value = content.dataset.dueDate;
       createdDate.textContent = "created on: " + content.dataset.createDate;
-      if (content.dataset.important == 0) detailStar.src = "./icon/star.svg";
+      if (content.dataset.important === '0') detailStar.src = "./icon/star.svg";
       else detailStar.src = "./icon/star-solid.svg";
-      if (content.dataset.completed == 0) {
+      if (content.dataset.completed === '0') {
         detailCheck.src = "./icon/circle.svg";
         todoContentInput.style = " text-decoration: ; color: darkslategrey;";
       } else {
@@ -187,10 +141,115 @@ function showDetail() {
         todoContentInput.style = " text-decoration: line-through; color: gray;";
       }
       checkButtonHover(detailCheck);
-      // detailCheck.off();
-
-      // console.log(content.dataset.createDate)
-      return;
     }
   });
 }
+
+function switchCheckIcon(imgElement, textHolder) {
+  if (!imgElement.src.endsWith("circle-check-blue.svg")) {
+    imgElement.src = "./icon/circle-check-blue.svg";
+    textHolder.style = " text-decoration: line-through; color: gray;";
+    textHolder.dataset.completed = 1;
+    completedCount.textContent = parseInt(completedCount.textContent, 10) + 1;
+    if (textHolder.dataset.itemId === currentDetailID) {
+      detailCheck.src = "./icon/circle-check-blue.svg";
+      todoContentInput.style = " text-decoration: line-through; color: gray;";
+    }
+  } else {
+    imgElement.src = "./icon/circle.svg";
+    textHolder.style = " text-decoration: ; color: darkslategrey;";
+    textHolder.dataset.completed = 0;
+    completedCount.textContent = parseInt(completedCount.textContent, 10) - 1;
+    if (textHolder.dataset.itemId === currentDetailID) {
+      detailCheck.src = "./icon/circle.svg";
+      todoContentInput.style = " text-decoration: ; color: darkslategrey;";
+    }
+  }
+}
+
+function switchStarIcon(imgElement, textHolder) {
+  if (imgElement.src.endsWith("star.svg")) {
+    imgElement.src = "./icon/star-solid.svg";
+    textHolder.dataset.important = 1;
+    importantCount.textContent = parseInt(importantCount.textContent, 10) + 1;
+    if (textHolder.dataset.itemId === currentDetailID)
+      detailStar.src = "./icon/star-solid.svg";
+  } else {
+    imgElement.src = "./icon/star.svg";
+    textHolder.dataset.important = 0;
+    importantCount.textContent = parseInt(importantCount.textContent, 10) - 1;
+    if (textHolder.dataset.itemId === currentDetailID)
+      detailStar.src = "./icon/star.svg";
+  }
+}
+
+function switchToAll() {
+  tabTitle.textContent = "All To-do";
+  listItems.forEach((div) => {
+    div.style.display = "grid";
+    let content = div.querySelector("div");
+    if (content.dataset.deleted === "1") {
+      div.style.display = "none";
+    }
+  });
+}
+
+function switchToImportant() {
+  tabTitle.textContent = "Important";
+  listItems.forEach((div) => {
+    div.style.display = "none";
+    let content = div.querySelector("div");
+    if (content.dataset.important === "1"&&content.dataset.deleted==="0") {
+      div.style.display = "grid";
+    }
+  });
+}
+
+function switchToCompleted() {
+  tabTitle.textContent = "Completed";
+  listItems.forEach((div) => {
+    div.style.display = "none";
+    let content = div.querySelector("div");
+    if (content.dataset.completed === "1"&&content.dataset.deleted==="0") {
+      div.style.display = "grid";
+    }
+  });
+}
+
+function switchToDeleted() {
+  tabTitle.textContent = "Deleted";
+  listItems.forEach((div) => {
+    div.style.display = "none";
+    let content = div.querySelector("div");
+    if (content.dataset.deleted === "1") {
+      div.style.display = "grid";
+    }
+  });
+}
+
+function updateTabCount() {
+  let all = 0;
+  let imp = 0;
+  let comp = 0;
+  let del = 0;
+  listItems.forEach((div) => {
+    let content = div.querySelector("div");
+    all++;
+    if (content.dataset.important === "1"&&content.dataset.deleted==="0")
+      imp++;
+    if (content.dataset.completed === "1"&&content.dataset.deleted==="0")
+      comp++;
+    if ((content.dataset.deleted === "1")) {
+      del++;
+      all--;
+    }
+  });
+  console.log(all,imp, comp, del)
+  allTodoCount.textContent=""+all;
+  importantCount.textContent=""+imp;
+  completedCount.textContent=""+comp;
+  deletedCount.textContent=""+del;
+}
+
+// switchToAll();
+// switchToDeleted();

@@ -29,7 +29,7 @@ textarea {
   display: grid;
   grid-template-columns: auto 1fr auto;
   margin-top: 15px;
-  margin-left: -10;
+  margin-left: -10px;
   padding: 10px;
   font-size: 20px;
   color: rgb(80, 80, 80);
@@ -94,8 +94,8 @@ h2{
   font-size: 20px;
   border-radius: 5px;
   margin-bottom: 10px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
   box-shadow: 2px 4px 8px rgba(40, 40, 40, 0.4);
   user-select: none;
   /* border: 3px solid rebeccapurple; */
@@ -107,8 +107,8 @@ h2{
   display: flex;
   height: 100%;
   align-items: center;
-  margin-left: 15px;
-  margin-right: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -129,13 +129,16 @@ h2{
   margin-right: 15px;
   padding-left: 12px;
 }
-.list #addNew img {
-  padding: 5px;
-  border-radius: 50%;
+.iconButton {
+  padding: 8px;
+  /* background-size: contain; */ /* 背景图像相对于元素大小放大 20% */
+  /* background-position: center; */
+  border-radius: 30%;
+  overflow: hidden;
   transition: transform 1s ease;
 }
 /* add new To-do input buttons background */
-#addNew img:hover {
+.iconButton:hover {
   background-color: antiquewhite;
 }
 
@@ -214,7 +217,7 @@ textarea:focus {
   margin-bottom: 10px;
   bottom: 0;
   text-align: center;
-  background-color: none;
+  /*background-color: none;*/
 }
 
 .detailFooter label {
