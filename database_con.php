@@ -13,4 +13,3 @@ $connect = new mysqli("localhost", "root", "", "edmond_todo_list");
 // }
 
 
-?>

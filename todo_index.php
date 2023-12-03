@@ -104,15 +104,15 @@ global $connect;
 
       } ?>
     <form id="addNew" action="database_operate.php" method="post">
-      <img class="iconButton" src="./icon/plus.svg" width="16px" alt="add"/>
-      <input id="newToDo" name="content" value="add" type="text" placeholder="add new to-do"/>
+      <img class="iconButton rotate" src="./icon/plus.svg" width="16px" alt="add"/>
+      <input id="newToDo" name="add" value="" type="text" placeholder="add new to-do"/>
       <input type="submit" id="hiddenSubmitTitle" style="display: none;">
-      <img class="iconButton" id="submit" src="./icon/check.svg" width="16px" alt="ok"/>
+      <img class="iconButton hidden" src="./icon/check.svg" width="16px" alt="ok"/>
     </form>
   </div>
   <!-- detail section -->
   <div class="detail">
-    <img id="closeDetail" src="./icon/xmark.svg" width="16px" alt="close"/>
+    <img id="closeDetail" src="./icon/xmark.svg" width="16px" title="close" alt="close"/>
     <div class="listItem">
       <img id="detailCheck" src="./icon/circle.svg" alt="check"/>
       <textarea name="todoContent" id="todoContentInput" cols="10" rows="2" placeholder="details"></textarea>
@@ -124,19 +124,17 @@ global $connect;
       <input type="date" id="datepicker">
     </div>
     <textarea name="comment" id="commentInput" cols="30" rows="10" placeholder="add comment"></textarea>
+    <div id="updateButton">Update</div>
 
-    <!-- </div> -->
-    <div class="detailFooter">
-
+    <div class="detailFooter" action="database_operate.php" method="post">
+      <!--      <input type="hidden" id="deleteItem" name="delete" value="id" style="display: none;">-->
+      <!--      <input type="submit" id="hiddenSubmitDelete" style="display: none;">-->
       <img class="iconButton" id="deleteUndo" src="./icon/undo.png" width="16px" title="undo" alt="trash"/>
       <label id="createdDate">created on: </label>
-      <form action="database_operate.php" method="post">
-        <input type="hidden" id="deleteItem" name="delete" value="id" style="display: none;">
-        <input type="submit" id="hiddenSubmitDelete" style="display: none;">
-        <img class="iconButton" id="deleteATodo" src="./icon/trash.svg" title="delete" alt="trash"/>
-      </form>
+      <img class="iconButton" id="deleteATodo" src="./icon/trash.svg" title="delete" alt="trash"/>
     </div>
   </div>
+  <!--  </div>-->
 </div>
 <script type="text/javascript" src="todo.js"></script>
 </body>

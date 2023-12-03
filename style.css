@@ -1,14 +1,17 @@
 body {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
+
 input {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: large;
 }
+
 textarea {
   color: darkslategrey;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
+
 .main {
   display: grid;
   /* min-width: 300px; */
@@ -37,18 +40,31 @@ textarea {
   align-items: center;
   border-radius: 5px;
   user-select: none;
+  transition: background-color 0.5s ease;
 }
+
 .naviTab > div:hover {
   background-color: lightgray;
 }
+
+.naviTab > div:active {
+  background-color: cornflowerblue !important;
+}
+
 .naviTab > div img {
   margin-right: 10px;
 }
+
+.navi_highlight {
+  background-color: lightgray !important;
+}
+
 hr {
   border: none;
   background-color: cadetblue;
   height: 2px;
 }
+
 #back {
   display: none;
 }
@@ -67,7 +83,7 @@ hr {
   display: none;
 }
 
-h2{
+h2 {
   color: aliceblue;
   user-select: none;
 }
@@ -81,7 +97,7 @@ h2{
 }
 
 .list > .listItem:hover {
-  background-color: antiquewhite;
+  background-color: antiquewhite !important;
 }
 
 .list > div,
@@ -99,6 +115,7 @@ h2{
   padding-right: 10px;
   box-shadow: 2px 4px 8px rgba(40, 40, 40, 0.4);
   user-select: none;
+  transition: background-color 0.5s ease;
   /* border: 3px solid rebeccapurple; */
 }
 
@@ -115,6 +132,10 @@ h2{
   text-overflow: ellipsis;
 }
 
+.item_highlight {
+  background-color: antiquewhite !important;
+}
+
 /* .list div img {
   margin-right: 15px;
   margin-left: 15px;
@@ -123,6 +144,7 @@ h2{
   margin-top: auto;
   bottom: 0;
 }
+
 .list #addNew input {
   border: 0;
   height: 30px;
@@ -130,20 +152,31 @@ h2{
   margin-right: 15px;
   padding-left: 12px;
 }
+
 .iconButton {
   padding: 8px;
   /* background-size: contain; */ /* 背景图像相对于元素大小放大 20% */
   /* background-position: center; */
   border-radius: 30%;
   overflow: hidden;
-  transition: transform 1s ease;
+  transition: background-color 0.5s ease;
 }
+
 /* add new To-do input buttons background */
 .iconButton:hover {
   background-color: antiquewhite;
 }
 
-#addNew img:nth-child(3) {
+.iconButton:active {
+  background-color: bisque;
+}
+
+.rotate {
+  transition: transform 1s ease;
+}
+
+.hidden {
+  /*color: lightsalmon;*/
   display: none;
 }
 
@@ -168,7 +201,7 @@ h2{
 }
 
 .detail .listItem {
-  border: 1px solid cadetblue;
+  border: 2px solid cadetblue;
   min-height: 50px;
   height: fit-content;
   align-items: baseline;
@@ -200,9 +233,9 @@ h2{
   resize: none;
 }
 
-.detail>textarea{
+.detail > textarea {
   box-shadow: 2px 4px 8px rgba(40, 40, 40, 0.4);
-  border: 1px solid cadetblue;
+  border: 2px solid cadetblue;
   margin-bottom: 10px;
 }
 
@@ -222,14 +255,61 @@ textarea:focus {
 }
 
 .detailFooter label {
+  display: flex;
   margin: 0 auto;
+  align-items: center;
+}
+
+#updateButton {
+  display: flex;
+  color: white;
+  user-select: none;
+  font-size: larger;
+  margin-top: 20px;
+  background: cadetblue;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  width: 90px;
+  height: 40px;
+  box-shadow: 2px 4px 8px rgba(40, 40, 40, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+#updateButton:hover {
+  color: cadetblue;
+  background: antiquewhite;
+}
+
+#updateButton:active {
+  background: lightgray;
 }
 
 @media screen and (max-width: 600px) {
   .main {
     grid-template-columns: 0 1fr auto;
   }
+
   #menu {
     display: block;
+  }
+}
+
+.colorAnimation {
+  animation: colorChange 1s infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    background: burlywood;
+    color: darkslategrey;
+  }
+  50% {
+    background: coral;
+    color: darkslategrey;
+  }
+  100% {
+    background: burlywood;
+    color: darkslategrey;
   }
 }
