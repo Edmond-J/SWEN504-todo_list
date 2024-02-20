@@ -5,6 +5,9 @@ Used HTML, JavaScript, CSS, php, SQL
 Deployed through XAMPP (Apache + MySQL) on a local server  
 [Visit the web app on my private cloud](http://161.65.83.227:2012/todo_index.php)  
 
+## <font color=goldenrod>Snapshoot</font>
+![UI](UI.png)
+
 ## <font color=goldenrod>Tools and Technologies Used:</font> 
 | Type | Name |
 | ----------- | ----------- |
@@ -20,9 +23,6 @@ Deployed through XAMPP (Apache + MySQL) on a local server
 - asynchronous webpage updates using AJAX
 - smooth animation
 - responsive: hamburger menu, layout adjust 
-
-## <font color=goldenrod>Snapshoot</font>
-![UI](UI.png)
 
 ## <font color=goldenrod>Installation</font>
 - **Requirement**:  
