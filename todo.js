@@ -83,7 +83,8 @@ function switchToAll() {
 
 function switchToImportant() {
   currentDetailID = -1;
-  detailArea.classList.remove("navi_highlight");
+  // detailArea.classList.remove("navi_highlight");
+  detailArea.style.display = "none";
   naviArea.querySelectorAll("div").forEach((div) => {
     div.classList.remove("navi_highlight");
   });
@@ -160,6 +161,7 @@ listItems.forEach((div) => {
     switchStarIcon(imgStar, content);
   });
 });
+
 /* 清单条目管理 */
 closeDetailButton.addEventListener("click", () => {
   detailArea.style.display = "none";
@@ -167,6 +169,7 @@ closeDetailButton.addEventListener("click", () => {
   contentChanged = false;
   commentChanged = false;
 });
+
 newToDoInput.addEventListener("input", (event) => {
   const inputValue = event.target.value;
   let imgs = document.querySelectorAll("#addNew img");
@@ -187,12 +190,14 @@ newToDoInput.addEventListener("input", (event) => {
     hiddenSubmitTitle.click();
   });
 });
+
 menuButton.addEventListener("click", () => {
   mainFrame.style = "grid-template-columns: auto 1fr auto;";
   // detailArea.style.display = "none";
   backButton.style.display = "block";
   menuButton.style.display = "none";
 });
+
 backButton.addEventListener("click", () => {
   mainFrame.style = "grid-template-columns: 0 1fr auto;";
   backButton.style.display = "none";
@@ -249,6 +254,7 @@ deleteUndo.addEventListener("click", () => {
   currentItem.querySelector("div").dataset.deleted = "0";
   currentItem.style.display = "grid";
   updateTabCount();
+  updateItemDetail(currentItem.querySelector("div"));
   listItems.forEach((div) => {
     div.style.display = "none";
     let content = div.querySelector("div");
@@ -280,8 +286,9 @@ deleteButton.addEventListener("click", () => {
   } else {
     currentItem.querySelector("div").dataset.deleted = "1";
     currentItem.style.display = "none";
-    updateTabCount();
   }
+  detailArea.style.display = "none";
+  updateTabCount();
   updateItemDetail(currentItem.querySelector("div"));
 });
 
@@ -317,6 +324,7 @@ function updateTabCount() {
   let imp = 0;
   let comp = 0;
   let del = 0;
+  let listItems = document.querySelectorAll(".list .listItem");
   listItems.forEach((div) => {
     let content = div.querySelector("div");
     all++;
@@ -356,11 +364,6 @@ function updateItemDetail(content) {
   };
   // console.log(id,todoContentInput.value,content.dataset.completed,content.dataset.important,content.dataset.deleted,commentInput.value)
   let jsonData = JSON.stringify(todo);
-  // linkup.onreadystatechange = function () {
-  //   if (this.readyState === 4 && this.status === 200) {
-  //     // console.log(this.responseText);
-  //   }
-  // };
   linkup.open("POST", "database_operate.php", true);
   linkup.setRequestHeader("X-Request-Type", "update");
   linkup.send(jsonData);

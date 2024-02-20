@@ -8,7 +8,7 @@ global $connect;
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edmond's To-Do List</title>
+  <title>AmandoJ's To-Do List</title>
   <!-- <script src="jquery-3.6.0.js"></script> -->
 </head>
 
@@ -19,7 +19,7 @@ global $connect;
     <img id="back" src="./icon/arrow-left.svg" alt="back" width="20px"/>
     <div>
       <img id="userAvatar" src="./icon/rabbit.png" alt="user" width="48"/>
-      <label id="userName">Account Name</label>
+      <label id="userName">Amando Jin</label>
     </div>
     <hr/>
     <div class="naviTab">
@@ -103,7 +103,7 @@ global $connect;
           echo '</div>';
 
       } ?>
-    <form id="addNew" action="database_operate.php" method="post">
+    <form id="addNew" action="database_operate.php" method="post" autocomplete="off">
       <img class="iconButton rotate" src="./icon/plus.svg" width="16px" alt="add"/>
       <input id="newToDo" name="add" value="" type="text" placeholder="add new to-do"/>
       <input type="submit" id="hiddenSubmitTitle" style="display: none;">
