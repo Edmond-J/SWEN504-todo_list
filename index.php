@@ -19,7 +19,7 @@ global $connect;
     <img id="back" src="./icon/arrow-left.svg" alt="back" width="20px"/>
     <div>
       <img id="userAvatar" src="./icon/rabbit.png" alt="user" width="48"/>
-      <label id="userName">Amando Jin</label>
+      <label id="userName">Edmond Jin</label>
     </div>
     <hr/>
     <div class="naviTab">
