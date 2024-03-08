@@ -8,6 +8,12 @@ Deployed through XAMPP (Apache + MySQL) on a local server
 ## <font color=goldenrod>Snapshoot</font>
 ![UI](UI.png)
 
+## <font color=goldenrod>Features</font>
+- real-time synchronization with database
+- asynchronous webpage updates using AJAX
+- smooth animation
+- responsive: hamburger menu, layout adjust 
+
 ## <font color=goldenrod>Tools and Technologies Used:</font> 
 | Type | Name |
 | ----------- | ----------- |
@@ -17,12 +23,6 @@ Deployed through XAMPP (Apache + MySQL) on a local server
 | Web Server | Apache |
 | Database Client | phpMyAdmin |
 | Editor/IDE | VS Code/phpStorm |
-
-## <font color=goldenrod>Features</font>
-- real-time synchronization with database
-- asynchronous webpage updates using AJAX
-- smooth animation
-- responsive: hamburger menu, layout adjust 
 
 ## <font color=goldenrod>Installation</font>
 - **Requirement**:  
