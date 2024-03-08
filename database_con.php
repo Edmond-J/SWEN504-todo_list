@@ -1,9 +1,7 @@
 <?php
-$server="localhost";
-$user="root";
-$password="";
-$db="edmond_todo_list";
+$server = "edmond-mysql.mysql.database.azure.com";
+$user = "edmond";
+$password = "Azure-db";
+$db = "edmond_todo_list";
 
-$connect = new mysqli("localhost", "root", "", "edmond_todo_list");
-
-
+$connect = new mysqli($server, $user, $password, $db);
