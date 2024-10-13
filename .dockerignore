@@ -1,0 +1,5 @@
+.*
+!.dockerignore
+!.env
+node_modules
+mysql_data

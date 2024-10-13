@@ -1,13 +1,13 @@
 <?php
 require 'database_con.php';
 global $connect;
-$requestType = $_SERVER['HTTP_X_REQUEST_TYPE'];
+$requestType = isset($_SERVER['HTTP_X_REQUEST_TYPE']) ? $_SERVER['HTTP_X_REQUEST_TYPE'] : '';
 
 if (isset($_POST['add'])) {
     $contentToAdd = htmlspecialchars($_POST['add']);
-    $stmt = $connect->prepare("INSERT INTO todo_items(content,create_date) VALUE(?,CURDATE())");
+    $stmt = $connect->prepare("INSERT INTO todo_items(content, create_date, completed, important, deleted, due_date, comment) VALUES (?, CURDATE(), 0, 0, 0, CURDATE(), '')");
     if ($stmt->execute([$contentToAdd])) {
-        header("Location:../todo_index.php");
+        header("Location:..$path/index.php");//改变了index.php的名称之后，这里也需要改变
     }
     $connect = null;
     exit();
