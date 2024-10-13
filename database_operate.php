@@ -5,7 +5,7 @@ $requestType = isset($_SERVER['HTTP_X_REQUEST_TYPE']) ? $_SERVER['HTTP_X_REQUEST
 
 if (isset($_POST['add'])) {
     $contentToAdd = htmlspecialchars($_POST['add']);
-    $stmt = $connect->prepare("INSERT INTO todo_items(content, create_date, completed, important, deleted, due_date, comment) VALUES (?, CURDATE(), 0, 0, 0, CURDATE(), '')");
+    $stmt = $connect->prepare("INSERT INTO todo_items(content, create_date, completed, important, deleted, due_date, comment) VALUES (?, CURDATE(), 0, 0, 0, NULL, '')");
     if ($stmt->execute([$contentToAdd])) {
         header("Location:..$path/index.php");//改变了index.php的名称之后，这里也需要改变
     }
