@@ -359,12 +359,13 @@ function updateItemDetail(content) {
     completed: content.dataset.completed,
     important: content.dataset.important,
     deleted: content.dataset.deleted,
-    due_date: dueDateDisplay.value,
+    due_date: dueDateDisplay.value||'',
     comment: commentInput.value
   };
   // console.log(id,todoContentInput.value,content.dataset.completed,content.dataset.important,content.dataset.deleted,commentInput.value)
   let jsonData = JSON.stringify(todo);
   linkup.open("POST", "database_operate.php", true);
+  linkup.setRequestHeader("Content-Type", "application/json");
   linkup.setRequestHeader("X-Request-Type", "update");
   linkup.send(jsonData);
   // fetch('database_operate.php?id=' + id, {method: 'UPDATE'});

@@ -6,5 +6,15 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 RUN chown -R www-data:www-data /var/www/html
 #在yml中已经映射了端口，所以EXPOSE不是严格要求的
+
+# 设置时区
+ENV TZ=Pacific/Auckland
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# 更新 Apache 配置以使用新的时区
+RUN sed -i 's/;date.timezone =/date.timezone = Pacific\/Auckland/' /usr/local/etc/php/php.ini-production \
+    && sed -i 's/;date.timezone =/date.timezone = Pacific\/Auckland/' /usr/local/etc/php/php.ini-development \
+    && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+    
 EXPOSE 80
 CMD ["apache2-foreground"]
