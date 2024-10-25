@@ -9,7 +9,7 @@ if (isset($_POST['add'])) {
     $stmt = $connect->prepare("INSERT INTO todo_items(content, create_date, completed, important, deleted, due_date, comment) VALUES (?, CURDATE(), 0, 0, 0, NULL, '')");
     // $current_time = date('Y-m-d H:i:s');
     if ($stmt->execute([$contentToAdd])) {
-        header("Location:..$path/index.php");//改变了index.php的名称之后，这里也需要改变
+        header("Location:../index.php");//改变了index.php的名称之后，这里也需要改变
     }
     $connect = null;
     exit();
@@ -36,7 +36,7 @@ if ($requestType === 'update') {
     $completed = $data['completed'];
     $important = $data['important'];
     $deleted = $data['deleted'];
-    $due_date = $data['due_date']===""?$data['due_date']:NULL;
+    $due_date = $data['due_date']===""?NULL:$data['due_date'];
     $comment = htmlspecialchars($data['comment']);
     $stmt = $connect->prepare("UPDATE todo_items SET content= '$content',completed='$completed',important='$important',deleted='$deleted',due_date=NULLIF('$due_date',''),comment='$comment' WHERE id='$id'");
     $stmt->execute();
