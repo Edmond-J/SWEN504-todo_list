@@ -9,7 +9,7 @@ if (isset($_POST['add'])) {
     $stmt = $connect->prepare("INSERT INTO todo_items(content, create_date, completed, important, deleted, due_date, comment) VALUES (?, CURDATE(), 0, 0, 0, NULL, '')");
     // $current_time = date('Y-m-d H:i:s');
     if ($stmt->execute([$contentToAdd])) {
-        header("Location:../index.php");//改变了index.php的名称之后，这里也需要改变
+        header("Location:../todolist/index.php");//改变了index.php的名称之后，这里也需要改变
     }
     $connect = null;
     exit();
