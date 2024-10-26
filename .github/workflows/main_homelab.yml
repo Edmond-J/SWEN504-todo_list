@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - main
+      - dev
 
 env:
   DOCKER_HUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   IMAGE_NAME: todo-list
-  IMAGE_TAG: 1.2
+  IMAGE_TAG: latest
 
 jobs:
   build-and-push:
