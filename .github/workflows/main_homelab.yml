@@ -45,6 +45,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd ~/05-docker_images/03-todo_list/
+            cd ~/05-docker_images/01-todo_list/
             docker compose pull
             docker compose up -d
