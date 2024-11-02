@@ -46,5 +46,5 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd ~/05-docker_images/01-todo_list/
-            docker compose pull
-            docker compose up -d
+            docker compose pull php-apache
+            docker compose up -d php-apache
