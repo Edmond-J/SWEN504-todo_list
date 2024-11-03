@@ -3,7 +3,6 @@ name: Docker Build and Deploy to Home Lab
 on:
   push:
     branches:
-      - main
       - dev
 
 env:
